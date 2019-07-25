@@ -35,7 +35,6 @@ public class InvoiceDetail {
 		this.setLineNumber(_lineNumber);
 		this.setProduct(_product);
 		this.setAmount(_amount);
-		checkInvoiceDetail();
 	}
 
 	/**

@@ -6,6 +6,7 @@ import com.runnablepatterns.facadepattern.Customer;
 import com.runnablepatterns.facadepattern.Invoice;
 import com.runnablepatterns.facadepattern.InvoiceDetail;
 import com.runnablepatterns.facadepattern.InvoiceDiscountDetail;
+import com.runnablepatterns.facadepattern.InvoiceFacade;
 import com.runnablepatterns.facadepattern.InvoiceTaxDetail;
 import com.runnablepatterns.facadepattern.Store;
 
@@ -29,13 +30,6 @@ public class FacadePatternDemo {
 		// create the invoice
 		Invoice invoice = new Invoice("INV-001");
 		
-		// check invoice number is valid
-		invoice.checkInvoiceNumber();
-		
-		// add customer and store
-		invoice.addCustomer(customer);
-		invoice.addStore(store);
-		
 		// store taxes list
 		ArrayList<InvoiceTaxDetail> taxes = new ArrayList();
 		
@@ -58,26 +52,11 @@ public class FacadePatternDemo {
 		details.add(new InvoiceDetail(2, "ProductB", 5000));
 		details.add(new InvoiceDetail(3, "ProductC", 1000));
 		
-		// store invoice header
-		invoice.saveInvoice();
+		// create Invoice faced using all required objects
+		InvoiceFacade invoiceFacade = new InvoiceFacade(customer, store, invoice, taxes, discounts, details);
 		
-		// add invoice to taxes and save
-		for (InvoiceTaxDetail invoiceTaxDetail : taxes) {
-			invoiceTaxDetail.addInvoice(invoice);
-			invoiceTaxDetail.saveTaxDetail();
-		}
-		
-		// add invoice to discounts and save
-		for (InvoiceDiscountDetail invoiceDiscountDetail : discounts) {
-			invoiceDiscountDetail.addInvoice(invoice);
-			invoiceDiscountDetail.saveDiscountDetail();
-		}
-		
-		// add invoice to details and save
-		for (InvoiceDetail invoiceDetail : details) {
-			invoiceDetail.addInvoice(invoice);
-			invoiceDetail.saveInvoiceDetail();
-		}
+		// save the invoice
+		invoiceFacade.saveInvoice();
 		
 		System.out.println("Process completed!");
 	}

@@ -28,7 +28,6 @@ public class InvoiceDiscountDetail {
 	public InvoiceDiscountDetail(String _dicountName, double _discountValue) {
 		this.setDiscountName(_dicountName);
 		this.setDiscountValue(_discountValue);
-		checkDiscountDetail();
 	}
 
 	/**

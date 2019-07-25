@@ -28,7 +28,6 @@ public class InvoiceTaxDetail {
 	public InvoiceTaxDetail(String _taxName, double _taxValue) {
 		this.setTaxName(_taxName);
 		this.setTaxValue(_taxValue);
-		checkTaxDetail();
 	}
 
 	/**
